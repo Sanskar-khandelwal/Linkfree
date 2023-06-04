@@ -2,8 +2,12 @@ import React, { useState } from "react"
 import Image from "next/image"
 import styles from "../styles/apply.module.css"
 import { toast } from "react-toastify"
+import Link from "next/link"
 
 const Apply = () => {
+  const [handle, setHandle] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [category, setCategory] = React.useState("")
 
   const handleCategoryChange = (e) => {
@@ -44,17 +48,23 @@ const Apply = () => {
                 <input
                   className="shadow-md  border-2 px-3 py-2  focus:outline-none w-full"
                   type="text"
+                  value={handle}
+                  onChange={(e) => setHandle(e.target.value)}
                   placeholder="Social Handle"
                 />
               </span>
               <input
                 className="shadow-md  border-2 px-2 py-2  focus:outline-none"
-                type="emai"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter Your Mail"
               />
               <input
                 className="shadow-md  border-2 px-2 py-2  focus:outline-none"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Set a Password"
               />
 
@@ -90,6 +100,12 @@ const Apply = () => {
               />
             </form>
           </div>
+          <h4 className="text-center text-white pt-3">
+            Already have an account ?
+            <Link className="font-bold text-indigo-500" href="/login">
+              Login
+            </Link>
+          </h4>
         </div>
       </section>
     </>
