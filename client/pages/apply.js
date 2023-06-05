@@ -3,12 +3,16 @@ import Image from "next/image"
 import styles from "../styles/apply.module.css"
 import { toast } from "react-toastify"
 import Link from "next/link"
+import axios from "axios"
+import {useRouter} from "next/router"
 
 const Apply = () => {
+  const router = useRouter()
   const [handle, setHandle] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [category, setCategory] = React.useState("")
+  const [submitted, setSubmitted] = React.useState(false)
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value)
@@ -18,7 +22,34 @@ const Apply = () => {
     e.preventDefault()
     if (!category) return toast.error("Please add a category")
 
-    toast("You are registered Successfully")
+    axios
+      .post(
+        "http://localhost:8080/api/register",
+        {
+          handle,
+          email,
+          password,
+          category,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        const data = response.data
+        console.log(data)
+        if (data.status === "success") {
+          toast("You are registered successfully")
+          localStorage.setItem("LinkTreeToken", data.token)
+          setSubmitted(true)
+          router.push('/login')
+        }
+      })
+      .catch((error) => {
+        toast.error(error.message)
+      })
   }
   return (
     <>
