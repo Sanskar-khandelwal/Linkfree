@@ -12,6 +12,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
+  //will use the fetch
   res.send("Hello from backend");
 });
 
