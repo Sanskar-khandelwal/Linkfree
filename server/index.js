@@ -1,9 +1,13 @@
 require("dotenv").config();
-const e = require("express");
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const mongoose = require("mongoose");
 const { registerUser, loginUser } = require("./controllers/auth");
+
+//middlewares
+app.use(express.json());
+app.use(cors());
 
 mongoose.set("strictQuery", false);
 app.use((req, res, next) => {
