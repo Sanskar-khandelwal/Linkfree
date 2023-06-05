@@ -14,7 +14,7 @@ const registerUser = async (req, res) => {
       role: category,
       links: [defaultLink],
     });
-    const token = jwt.sign({ email: email }, process.env.JWT_SECRET) || "fakevalue";
+    const token = jwt.sign({ email: email }, process.env.JWT_SECRET);
     console.log("user", user);
 
     return res.json({
@@ -35,9 +35,24 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = (req, res) => {
-  res.status(200).json({
-    message: "success",
-  });
+  const {email, password} = req.body;
+  try{
+    const user = User.findOne({email: email, password: password})
+    console.log(user)
+    if(!user){
+      return res.json({status: 'not found', error: 'Invalid redentials'})
+    }
+    const token = jwt.sign({email: email}, process.env.JWT_SECRET)
+    return res.json({
+      message: "user found",
+      status: "success",
+      id: user._id,
+      "token": token,
+    });
+  }
+  catch(e){
+    return res.status(404).json({ message: err.message, status: "error" });
+  }
 };
 
 module.exports = {

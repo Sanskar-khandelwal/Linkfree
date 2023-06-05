@@ -2,15 +2,42 @@ import React, { useState } from "react"
 import styles from "../styles/apply.module.css"
 import { toast } from "react-toastify"
 import Link from "next/link"
+import axios from 'axios'
+import {useRouter} from 'next/router'
 
-const Apply = () => {
+const Login = () => {
+  const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const handleLogin = (e) => {
     e.preventDefault()
-    if (!category) return toast.error("Please add a category")
 
-    toast("You are Login Successfully Successfully")
+    //backend here
+
+    axios.post("http://localhost:8080/api/login",{  
+      email,
+      password,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    } ).then((response) => {
+      const data = response.data
+      console.log(data)
+      if (data.status === "success") {
+        toast("You are Login successfully")
+        localStorage.setItem("LinkTreeToken", data.token)
+        router.push('/dashboard')
+      }
+      if(data.status == "not found"){
+        toast("User not found")
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+      toast.error(error.message)
+    })
     setEmail("")
     setPassword("")
   }
@@ -65,4 +92,4 @@ const Apply = () => {
   )
 }
 
-export default Apply
+export default Login
