@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import { toast } from "react-toastify"
 import LinkTree from "@/components/LinkTree"
+import SocialTree from "@/components/SocialTree"
+import ShareButton from "@/components/ShareButton"
+
 import axios from "axios"
 import Link from "next/link"
 
@@ -9,6 +12,15 @@ const handle = () => {
   const router = useRouter()
   const [data, setData] = useState({})
   const [userFound, setUserFound] = useState(false)
+
+  const [social, setSocials] = useState({
+    facebook: "",
+    twitter: "",
+    instagram: "",
+    youtube: "",
+    linkedin: "",
+    github: "",
+  })
   useEffect(() => {
     if (router.query?.handle) {
       axios
@@ -23,6 +35,7 @@ const handle = () => {
           }
           if (data.status == "success") {
             setData(data.userData)
+            setSocials(data.socials)
             setUserFound(true)
           }
         })
@@ -30,7 +43,7 @@ const handle = () => {
           console.log(err)
         })
     }
-  }, [router.query.handle])
+  }, [router.query])
   if (!userFound) {
     return (
       <div className="flex  flex-col justify-center items-center h-screen">
@@ -54,7 +67,9 @@ const handle = () => {
   }
   return (
     <>
+      <ShareButton />
       <LinkTree data={data} />
+      <SocialTree social={social} />
     </>
   )
 }
