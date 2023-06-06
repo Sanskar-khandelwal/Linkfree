@@ -1,6 +1,12 @@
 import React from "react"
+import { useRouter } from "next/router"
 
 const UserHeader = () => {
+  const router = useRouter()
+  function handleLogout() {
+    localStorage.removeItem("LinkTreeToken")
+    router.push("/login")
+  }
   return (
     <>
       <header className="mt-3 flex flex-row justify-between items-center">
@@ -15,7 +21,7 @@ const UserHeader = () => {
           </button>
         </div>
         <div className="flex flex-row items-center">
-          <div className="inline-flex mr-s text-right items-center hover:bg-gray-100 px-5 py-1 rounded-lg border">
+          <div className="inline-flex mr-s text-right items-center hover:bg-gray-100 px-5 py-1 rounded-lg border mr-5">
             <div className="text-xs md:text-md flex flex-col flex-wrap mr-2">
               <span className="font-bold">Name</span>
               <span>Role Pack</span>
@@ -28,11 +34,19 @@ const UserHeader = () => {
               />
             </div>
           </div>
-          <img className="w-5 h-5 mr-5  " src="/svg/notify.svg" alt="" />
-          <img className="w-5 h-5 mr-5 " src="/svg/logout.svg" alt="" />
+          <img
+            className="w-5 h-5 mr-5  cursor-pointer"
+            src="/svg/notify.svg"
+            alt=""
+          />
+          <img
+            className="w-5 h-5 mr-5 cursor-pointer"
+            src="/svg/logout.svg"
+            alt=""
+            onClick={handleLogout}
+          />
         </div>
       </header>
-      <div></div>
     </>
   )
 }
