@@ -1,5 +1,6 @@
 import React from "react"
 import { useRouter } from "next/router"
+import Link from 'next/link'
 
 const UserHeader = ({data}) => {
   const {name, role, avatar, handle, links} = data;
@@ -20,7 +21,9 @@ const UserHeader = ({data}) => {
             <img src="/svg/profile.svg" alt="" className="w-4 h-4 mr-3" />
             <p>Edit Profile</p>
           </button>
-        </div>
+        </div>  
+
+        <Link href={`http://localhost:3000/${handle}`}>
         <div className="flex flex-row items-center">
           <div className="inline-flex mr-s text-right items-center hover:bg-gray-100 px-5 py-1 rounded-lg border mr-5">
             <div className="text-xs md:text-md flex flex-col flex-wrap mr-2">
@@ -47,6 +50,8 @@ const UserHeader = ({data}) => {
             onClick={handleLogout}
           />
         </div>
+        </Link>
+       
       </header>
     </>
   )
