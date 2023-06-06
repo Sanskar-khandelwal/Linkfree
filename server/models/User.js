@@ -6,7 +6,7 @@ const User = new Schema(
     name: { type: String },
     bio: { type: String },
     email: { type: String, required: true, unique: true },
-    avatar: { type: String },
+    avatar: { type: String, default: "https://cdn-icons-png.flaticon.com/128/4140/4140048.png" },
     password: { type: String, required: true },
     role: {
       type: String,
