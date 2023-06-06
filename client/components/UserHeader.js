@@ -1,7 +1,8 @@
 import React from "react"
 import { useRouter } from "next/router"
 
-const UserHeader = () => {
+const UserHeader = ({data}) => {
+  const {name, role, avatar, handle, links} = data;
   const router = useRouter()
   function handleLogout() {
     localStorage.removeItem("LinkTreeToken")
@@ -23,12 +24,12 @@ const UserHeader = () => {
         <div className="flex flex-row items-center">
           <div className="inline-flex mr-s text-right items-center hover:bg-gray-100 px-5 py-1 rounded-lg border mr-5">
             <div className="text-xs md:text-md flex flex-col flex-wrap mr-2">
-              <span className="font-bold">Name</span>
-              <span>Role Pack</span>
+              <span className="font-bold">{handle}</span>
+              <span>{role} Pack</span>
             </div>
             <div className="user-img">
               <img
-                src="https://cdn-icons-png.flaticon.com/128/4140/4140048.png"
+                src={avatar}
                 alt=""
                 className="w-10"
               />
