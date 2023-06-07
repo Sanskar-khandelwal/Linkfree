@@ -1,35 +1,14 @@
-import React, { useEffect,useState} from "react"
+import React, { useEffect,useState, useContext} from "react"
 import axios from 'axios'
 import {toast} from 'react-toastify'
 
 import LinkBox from "@/components/LinkBox"
 import UserHeader from "@/components/UserHeader"
+import UserContext from "@/context/userContext"
 
 
 const dashboard = () => {
   const [data, setData] = useState({})
-  useEffect(() => {
-    if (!localStorage.getItem("LinkTreeToken"))
-      return (window.location.href = "/login")
-
-      axios.post("http://localhost:8080/data/dashboard", {
-        tokenMail: localStorage.getItem("LinkTreeToken")
-      },{
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }).then(res => {
-        const data = res.data
-        if(data.status == "error"){
-          return toast.error("Error Happened")
-        }
-        setData(data.userData)
-        localStorage.setItem('userHandle', data.userData.handle)
-        toast.success(data.message)
-      }).catch(err => {
-        console.log(err)
-      })
-  }, [])
 
   return (
     <>
