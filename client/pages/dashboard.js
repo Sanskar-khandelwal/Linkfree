@@ -9,11 +9,42 @@ import UserContext from "@/context/userContext"
 
 const dashboard = () => {
   const [data, setData] = useState({})
+  const { setUserData } = useContext(UserContext)
+  useEffect(() => {
+    if (!localStorage.getItem("LinkTreeToken"))
+      return (window.location.href = "/login")
+
+    axios
+      .post(
+        "http://localhost:8080/data/dashboard",
+        {
+          tokenMail: localStorage.getItem("LinkTreeToken"),
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        const data = res.data
+        if (data.status == "error") {
+          return toast.error("Error Happened")
+        }
+        setData(data.userData)
+        setUserData(data.userData)
+        localStorage.setItem("userHandle", data.userData.handle)
+        toast.success(data.message)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   return (
     <>
       <div>
-        <UserHeader data = {data} />
+        <UserHeader/>
         <main>
           <section className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
             <LinkBox lbTitle="Links" lbNumber={data.links} lbSvg="url" lbTheme="white" />
