@@ -3,9 +3,12 @@ import { useEffect } from "react"
 import UserContext from "@/context/userContext"
 import UserHeader from "@/components/UserHeader"
 import Image from "next/image"
+import { toast } from "react-toastify"
 import axios from "axios"
+import { useRouter } from "next/router"
 
 const profile = () => {
+  const router = useRouter()
   const { userData, setUserData } = useContext(UserContext)
   const [socials, setSocials] = useState({
     facebook: "",
@@ -28,9 +31,58 @@ const profile = () => {
     })
   }
 
+  function saveProfile(e) {
+    e.preventDefault()
+    axios
+      .post(
+        "http://localhost:8080/save/profile",
+        {
+          tokenMail: localStorage.getItem("LinkTreeToken"),
+          name, 
+          bio, 
+          avatar
+        },
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        const data = res.data
+        if (data.status == "error") return toast.error(data.error)
+        toast.success("Profile saved Successfully")
+      })
+      .catch((e) => {
+        console.log(e.message)
+        toast.error(e.message)
+      })
+  }
+
   function saveSocials(e) {
     e.preventDefault()
-    axios.post("")
+    axios
+      .post(
+        "http://localhost:8080/save/socials",
+        {
+          tokenMail: localStorage.getItem("LinkTreeToken"),
+          socials,
+        },
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        const data = res.data
+        if (data.status == "error") return toast.error(data.error)
+        toast.success("Socials saved Successfully")
+      })
+      .catch((e) => {
+        console.log(e.message)
+        toast.error(e.message)
+      })
   }
 
   useEffect(() => {
@@ -40,6 +92,22 @@ const profile = () => {
       setBio(userData.bio)
     }
   }, [userData])
+
+  useEffect(() => {
+     if(!localStorage.getItem('LinkTreeToken')) return router.push('/login')
+     axios.post("http://localhost:8080/load/socials", {
+      tokenMail: localStorage.getItem('LinkTreeToken')
+     },
+     {
+      headers : {
+        "Content-type": 'application/json'
+      }
+     }).then(res => {
+      const data = res.data
+      if(data.status == 'error') {return toast.error(data.error)}
+      setSocials(data.socials)
+     })
+  }, [])
 
   return (
     <>
@@ -52,7 +120,7 @@ const profile = () => {
                 Edit Profile
               </h4>
               <div>
-                <form className="flex flex-col justify-center items-center">
+                <form onSubmit={saveProfile} className="flex flex-col justify-center items-center">
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 bg-white items-center">
                     <Image
                       src="/svg/user.svg"
@@ -109,19 +177,23 @@ const profile = () => {
                   </span>
 
                   <input
-                    type="button"
+                    type="submit"
                     value="Save Profile"
                     className="bg-blue-600 px-4 py-2 rouned-md w-32 border shadow-md cursor-pointer text-white"
                   />
                 </form>
               </div>
             </div>
+
             <div>
               <h4 className="font-bold text-center mb-5 mt-5 text-lg">
                 Edit Socials
               </h4>
               <div>
-                <form className="flex flex-col justify-center items-center">
+                <form
+                  className="flex flex-col justify-center items-center"
+                  onSubmit={saveSocials}
+                >
                   <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 bg-white items-center">
                     <Image
                       src="/svg/facebook.svg"
@@ -225,7 +297,7 @@ const profile = () => {
                     />
                   </span>
                   <input
-                    type="button"
+                    type="submit"
                     value="Save Profile"
                     className="bg-blue-600 px-4 py-2 rouned-md w-32 border shadow-md cursor-pointer text-white"
                   />
