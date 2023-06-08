@@ -6,7 +6,8 @@ const mongoose = require("mongoose");
 const { registerUser, loginUser } = require("./controllers/auth");
 const dashboardData = require('./controllers/dashboard')
 const getUserData = require("./controllers/getUserData")
-
+const {saveSocials, saveProfile, saveLinks} = require("./controllers/saveSocials")
+const {loadSocials, loadLinks} = require("./controllers/loadOldData")
 //middlewares
 app.use(express.json());
 app.use(cors()); 
@@ -27,6 +28,11 @@ app.post("/api/register", registerUser);
 app.post("/api/login", loginUser);
 app.post("/data/dashboard", dashboardData)
 app.get("/get/:handle", getUserData)
+app.post("/save/socials", saveSocials)
+app.post("/save/profile", saveProfile)
+app.post("/save/links", saveLinks)
+app.post("/load/socials", loadSocials)
+app.post("/load/links", loadLinks)
 
 const port = process.env.PORT || 8080;
 

@@ -14,6 +14,7 @@ const dashboardData = async (req, res) => {
         name: user.name,
         role: user.role,
         avatar: user.avatar,
+        bio: user.bio,
         handle: user.handle,
         links: user.links.length
     }
