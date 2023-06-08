@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Footer from "../components/Footer";
+
 import NavBar from "../components/Navbar";
 import NProgress from 'nprogress';
 import '../public/nprogress.css';
@@ -62,7 +62,7 @@ export default function App({ Component, pageProps }) {
     </UserContext.Provider>
     <ToastContainer />
     {isLoading && <div className="nprogress-custom-parent"><div className="nprogress-custom-bar"/></div>}
-    <Footer/>
+   
 
     </>
   ) 
