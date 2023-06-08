@@ -1,5 +1,7 @@
 # SocialVerse
-![My Image](./client/public/images/Doremon.png)
+
+
+![Doremon](https://github.com/Sanskar-khandelwal/Linkfree/assets/93245109/6beeac81-951b-4f52-92ed-36d3471caaee)
 
 
 
