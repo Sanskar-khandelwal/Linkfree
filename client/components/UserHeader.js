@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 import UserContext from "@/context/userContext"
 import axios from 'axios'
+import {toast} from 'react-toastify'
 
 const UserHeader = () => {
   // const {name, role, avatar, handle, links} = data;
@@ -34,10 +35,9 @@ const UserHeader = () => {
         if (data.status == "error") {
           return toast.error("Error Happened")
         }
-        setData(data.userData)
+        // setData(data.userData)
         setUserData(data.userData)
         localStorage.setItem("userHandle", data.userData.handle)
-        toast.success(data.message)
       })
       .catch((err) => {
         console.log(err)
@@ -48,13 +48,13 @@ const UserHeader = () => {
     <>
       <header className="mt-3 flex flex-row justify-between items-center">
         <div className="flex flex-col md:flex-row ">
-          <Link href="{/edit/links}">
+          <Link href="/edit/links">
             <button className="inline-flex w-40 md:w-auto px-5 py-3 text-gray-600 font-bold border hover:text-gray-900 hover:bg-gray-100 rounded-md mb-3 mr-3">
               <img src="/svg/url.svg" alt="" className="w-4 h-4 mr-3" />
               <p>Edit Link</p>
             </button>
           </Link>
-          <Link href={"/edit/profile"}>
+          <Link href="/edit/profile">
             <button className="inline-flex w-40 md:w-auto px-5 py-3 text-gray-600 font-bold border hover:text-gray-900 hover:bg-gray-100 rounded mb-3">
               <img src="/svg/profile.svg" alt="" className="w-4 h-4 mr-3" />
               <p>Edit Profile</p>
