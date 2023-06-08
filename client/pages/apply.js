@@ -70,11 +70,11 @@ const Apply = () => {
             >
               <span className="flex flex-row shadow-md border-2 bg-white items-center">
                 <Image
-                  src="/svg/ig.svg"
+                  src="/svg/userhandle.svg"
                   width={35}
                   height={30}
                   alt="instagram logo"
-                  className="mr-3 text-white bg-white mx-auto"
+                  className="mx-2 text-white bg-white w-6 h-6 "
                 ></Image>
                 <input
                   className="shadow-md  border-2 px-3 py-2  focus:outline-none w-full"
