@@ -67,7 +67,7 @@ const handle = () => {
   }
   return (
     <>
-    <div className="max-w-3xl mx-auto relative border border-red-500">
+    <div className="max-w-3xl mx-auto relative">
       <ShareButton />
       <LinkTree data={data} />
       <SocialTree social={social} />
