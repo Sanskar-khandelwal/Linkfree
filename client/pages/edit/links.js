@@ -1,10 +1,13 @@
 import UserHeader from "@/components/UserHeader"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import axios from "axios"
 import { toast } from "react-toastify"
 
 const links = () => {
-  const [links, setLinks] = useState({ url: "", title: "" })
+  // const [links, setLinks] = useState([{ url: "", title: "" }])
+
+  const [links, setLinks] = useState([{ url: "", title: "" }])
+
   const [title, setTitle] = useState("")
 
   function saveLinks(e) {
@@ -46,7 +49,7 @@ const links = () => {
   }
 
   function handleAddLink() {
-    setLinks(...links, { url: "", title: "" })
+    setLinks([...links, { url: "", title: "" }])
   }
   function handleRemoveLinks(index) {
     const updatedLinks = [...links]
@@ -55,6 +58,8 @@ const links = () => {
   }
 
   useEffect(() => {
+    console.log(typeof [1, 2])
+    console.log(Array.isArray(links))
     if (!localStorage.getItem("LinkTreeToken")) return router.push("/login")
     axios
       .post(
@@ -88,8 +93,8 @@ const links = () => {
             </h1>
             <div>
               <form onSubmit={saveLinks}>
-                {links.map((link, index) => {
-                  ;<div key={index} className="flex justify-evenly">
+                {links.map((link, index) => (
+                  <div key={index} className="flex justify-evenly">
                     <label>
                       URL:
                       <input
@@ -121,7 +126,7 @@ const links = () => {
                       alt="icon to delete link"
                     />
                   </div>
-                })}
+                ))}
                 <div className="buttons flex flex-row gap-5 my-1">
                   <button
                     className="bg-indigo-500 text-white px-4 py-2 rounded-md shadowsm w-full"

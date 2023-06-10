@@ -12,8 +12,8 @@ const ShareButton = () => {
   }
   return (
     <>
-      <div
-        className="absolute cursor-pointer top-28 left-80"
+      <div 
+        className="absolute cursor-pointer top-2 left-2"
         onClick={copyLink}
       >
         <img

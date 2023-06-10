@@ -51,7 +51,7 @@ const saveLinks = async(req, res) => {
    await user.save()
     return res.json({message: 'saved', status: 'success'})
   }catch(err){
-
+     return res.json({status: 'error', error: err.message})
 }
 }
 

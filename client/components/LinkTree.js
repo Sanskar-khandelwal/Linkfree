@@ -2,8 +2,9 @@ import React from "react"
 import LinkTreeCard from "../components/LinkTreeCard"
 import { AnimatePresence, motion } from "framer-motion"
 
+
 const LinkTree = ({ data }) => {
-  const { name, avatar, bio, links } = data
+   const { name, avatar, bio, links } = data
   return (
     <>
       <section>
@@ -17,9 +18,11 @@ const LinkTree = ({ data }) => {
             {name ? name : "No Username"}
           </h2>
         </div>
-
+  
         <p className="text-center pb-5">{bio}</p>
-        <div className="flex flex-col justify-center max-w-7xl m-auto md:my-5 w-full md:w-2/5">
+        
+    
+        <div className="flex flex-col justify-center max-w-7xl m-auto md:my-5 w-full  mx-auto">
           {/* <AnimatePresence> */}
           {links.map((link, index) => {
             // ;<motion.div
@@ -28,11 +31,14 @@ const LinkTree = ({ data }) => {
             //   animate={{ opacity: 1 }}
             // >
             return (
+              
               <LinkTreeCard
                 title={link.title}
                 url={link.url}
                 image={link.icon}
               />
+            
+              
             )
             // </motion.div>
           })}
