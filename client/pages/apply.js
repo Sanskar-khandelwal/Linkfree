@@ -53,22 +53,18 @@ const Apply = () => {
   }
   return (
     <>
-      <section
-        className={
-          styles.background + " min-h-screen flex justify-center items-center"
-        }
-      >
-        <div className="main">
-          <div className="content border-2 px-4 py-8 rounded-2xl shadow-lg bg-white">
-            <h1 className="text-2xl font-bold text-center">
-              Make your Visibility Easy
+    <section className="flex flex-row h-screen overflow-hidden ">
+    <div className="main flex  h-full px-10 w-2/5 items-center">  
+          <div className="content px-4 py-8  bg-white">
+            <h1 className="text-2xl font-bold text-left">
+              Create your Personlised Hub, Sign Up today
             </h1>
-            <p className="text-center  mt-2">Make LinkTree, Make your Brand</p>
+            <p className="text-left  mt-2">Link Share Inspire</p>
             <form
               onSubmit={handleRegister}
-              className="flex flex-col gap-3 text-lg mt-3"
+              className="flex flex-col gap-3 text-lg mt-6"
             >
-              <span className="flex flex-row shadow-md border-2 bg-white items-center">
+              <span className="flex flex-row border bg-white items-center">
                 <Image
                   src="/svg/userhandle.svg"
                   width={35}
@@ -77,7 +73,7 @@ const Apply = () => {
                   className="mx-2 text-white bg-white w-6 h-6 "
                 ></Image>
                 <input
-                  className="shadow-md  border-2 px-3 py-2  focus:outline-none w-full"
+                  className="  border rounded-md bg-gray-100 px-3 py-2  focus:outline-none w-full"
                   type="text"
                   value={handle}
                   onChange={(e) => setHandle(e.target.value)}
@@ -85,24 +81,25 @@ const Apply = () => {
                 />
               </span>
               <input
-                className="shadow-md  border-2 px-2 py-2  focus:outline-none"
+                className="  border px-2 py-2 rounded-md bg-gray-100 focus:outline-none"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter Your Mail"
               />
               <input
-                className="shadow-md  border-2 px-2 py-2  focus:outline-none"
+                className="  border px-2 py-2 rounded-md bg-gray-100  focus:outline-none"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Set a Password"
               />
-
-              <h5 className="text-sm text-center text-indigo-500">
+    
+              <h5 className="text-lg text-left text-indigo-500">
                 Account Type:{" "}
               </h5>
-              <label>
+              <div className="flex">
+              <label className="inline">
                 <input
                   type="checkbox"
                   name=""
@@ -110,10 +107,11 @@ const Apply = () => {
                   checked={category === "Creator"}
                   onChange={handleCategoryChange}
                   value="Creator"
+                  className="inline rounded-md bg-gray-100 "
                 />
-                <p>Creators</p>
+                <p className="inline ml-2">Creators</p>
               </label>
-              <label>
+              <label className="inline ml-2">
                 <input
                   type="checkbox"
                   name=""
@@ -121,25 +119,40 @@ const Apply = () => {
                   checked={category === "Agency"}
                   onChange={handleCategoryChange}
                   value="Agency"
+                  className="inline rounded-md bg-gray-100"
                 />
-                <p>Agency</p>
+                <p className="inline ml-2">Agency</p>
               </label>
+              </div>
+             
               <input
                 type="submit"
                 value="Apply"
-                className="bg-indigo-600 text-white py-2 rounded-md cursor-pointer "
+                className="bg-indigo-600 text-white py-2  cursor-pointer rounded-md"
               />
             </form>
-          </div>
-          <h4 className="text-center text-white pt-3">
+            <h4 className="text- text-black mt-4">
             Already have an account ?
             <Link className="font-bold text-indigo-500" href="/login">
               Login
             </Link>
           </h4>
+          </div>
+        
+          
         </div>
-      </section>
+
+        <div className="flex-1 w-3/5 h-full ">
+         <img src="/images/bulb.jpg " alt="" className="rounded-lg object-cover h-full w-full" />
+        </div>
+
+    </section>
+     
+      
+    
     </>
+  
+
   )
 }
 
