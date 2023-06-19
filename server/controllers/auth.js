@@ -34,13 +34,13 @@ const registerUser = async (req, res) => {
   }
 };
 
-const loginUser = (req, res) => {
+const loginUser = async (req, res) => {
   const {email, password} = req.body;
   try{
-    const user = User.findOne({email: email, password: password})
+    const user = await User.findOne({email: email, password: password})
     console.log(user)
     if(!user){
-      return res.json({status: 'not found', error: 'Invalid redentials'})
+      return res.json({status: 'error', error: 'Invalid credentials'})
     }
     const token = jwt.sign({email: email}, process.env.JWT_SECRET)
     return res.json({
@@ -51,7 +51,7 @@ const loginUser = (req, res) => {
     });
   }
   catch(e){
-    return res.status(404).json({ message: err.message, status: "error" });
+    return res.json({ message: e.message, status: "error" });
   }
 };
 
