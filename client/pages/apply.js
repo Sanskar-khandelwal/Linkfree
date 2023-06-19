@@ -13,6 +13,7 @@ const Apply = () => {
   const [password, setPassword] = useState("")
   const [category, setCategory] = React.useState("")
   const [submitted, setSubmitted] = React.useState(false)
+  const [error, setError] = useState('')
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value)
@@ -20,7 +21,9 @@ const Apply = () => {
 
   const handleRegister = (e) => {
     e.preventDefault()
-    if (!category) return toast.error("Please add a category")
+    if (!category){
+      toast.error("Please add a category")
+    }
 
     axios
       .post(
@@ -38,16 +41,20 @@ const Apply = () => {
         }
       )
       .then((response) => {
-        const data = response.data
-        console.log(data)
+        
         if (data.status === "success") {
           toast("You are registered successfully")
           localStorage.setItem("LinkTreeToken", data.token)
           setSubmitted(true)
           router.push('/login')
         }
+        if(data.status == "error"){
+          setError(error)
+          toast.error("Error in registering the user")
+        }
       })
       .catch((error) => {
+        setError(error);
         toast.error(error.message)
       })
   }
@@ -136,6 +143,7 @@ const Apply = () => {
             <Link className="font-bold text-indigo-500" href="/login">
               Login
             </Link>
+            {error && <p className="text-red-700 font-mono"> try different username or email </p>}
           </h4>
           </div>
         
