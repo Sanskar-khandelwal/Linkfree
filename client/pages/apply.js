@@ -41,7 +41,7 @@ const Apply = () => {
         }
       )
       .then((response) => {
-        
+        const data = response.data
         if (data.status === "success") {
           toast("You are registered successfully")
           localStorage.setItem("LinkTreeToken", data.token)
@@ -109,8 +109,6 @@ const Apply = () => {
               <label className="inline">
                 <input
                   type="checkbox"
-                  name=""
-                  id=""
                   checked={category === "Creator"}
                   onChange={handleCategoryChange}
                   value="Creator"
@@ -121,8 +119,6 @@ const Apply = () => {
               <label className="inline ml-2">
                 <input
                   type="checkbox"
-                  name=""
-                  id=""
                   checked={category === "Agency"}
                   onChange={handleCategoryChange}
                   value="Agency"

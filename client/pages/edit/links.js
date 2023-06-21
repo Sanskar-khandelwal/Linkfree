@@ -86,20 +86,21 @@ const links = () => {
     <>
       <div>
         <UserHeader />
-        <main>
+        <main className="mt-4">
           <section>
             <h1 className="text-center font-bold text-xl text-gray-800">
-              Add or Customize links
+                             Customize links
             </h1>
             <div>
               <form onSubmit={saveLinks}>
                 {links.map((link, index) => (
-                  <div key={index} className="flex justify-evenly">
+                  <div key={index} className="flex justify-between items-center max-w-5xl mx-auto mt-4 ">
                     <label>
-                      URL:
+            
                       <input
-                        className="outline-none  border-2 font-bold text-xl text-gray-600 shadow rounded-md px-2 p-1 ml-2 "
+                        className="outline-none align-baseline  border-2 font text-xl text-gray-600 shadow rounded-md px-2 p-1"
                         type="text"
+                        placeholder="Enter URL"
                         value={link.url}
                         onChange={(e) =>
                           handleLinkChange(index, "url", e.target.value)
@@ -107,42 +108,43 @@ const links = () => {
                       />
                     </label>
                     <label>
-                      Title:
+                
                       <input
-                        className="outline-none  border-2 font-bold text-xl text-gray-600 shadow rounded-md px-2 p-1 ml-2"
+                        className="outline-none  border-2 font text-xl text-gray-600 shadow rounded-md px-2 p-1"
                         type="text"
+                        placeholder="Enter Name"
                         value={link.title}
                         onChange={(e) =>
                           handleLinkChange(index, "title", e.target.value)
                         }
                       />
                     </label>
-
+                   <img
+                      src="/svg/addition.svg"
+                      className="w-7 h-7  cursor-pointer"
+                      type="button"
+                      onClick={(e) => handleAddLink(index)}
+                      alt="icon to delete link"
+                    />
                     <img
                       src="/svg/delete.svg"
-                      className="w-12 h-12"
+                      className="w-9 h-9  cursor-pointer"
                       type="button"
                       onClick={(e) => handleRemoveLinks(index)}
                       alt="icon to delete link"
                     />
                   </div>
                 ))}
-                <div className="buttons flex flex-row gap-5 my-1">
+               
+                 
                   <button
-                    className="bg-indigo-500 text-white px-4 py-2 rounded-md shadowsm w-full"
-                    type="button"
-                    onClick={handleAddLink}
-                  >
-                    Add link
-                  </button>
-                  <button
-                    className="bg-indigo-500 text-white px-4 py-2 rounded-md shadowsm w-full"
+                    className="bg-[#19c37d] text-white px-4 py-2 rounded-md block  mx-auto mt-4"
                     type="submit"
                   >
                     {" "}
-                    Save
+                    Save links
                   </button>
-                </div>
+         
               </form>
             </div>
           </section>
