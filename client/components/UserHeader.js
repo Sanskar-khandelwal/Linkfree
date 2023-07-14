@@ -20,7 +20,7 @@ const UserHeader = () => {
 
     axios
       .post(
-        "http://localhost:8080/data/dashboard",
+        "https://socialverseserver-z24w.onrender.com/data/dashboard",
         {
           tokenMail: localStorage.getItem("LinkTreeToken"),
         },
@@ -46,16 +46,16 @@ const UserHeader = () => {
 
   return (
     <>
-      {/* <header className="mt-3 flex flex-row justify-between items-center">
+      {/* <header className="flex flex-row items-center justify-between mt-3">
         <div className="flex flex-col md:flex-row ">
           <Link href="/edit/links">
-            <button className="inline-flex w-40 md:w-auto px-5 py-3 text-gray-600 font-bold border hover:text-gray-900 hover:bg-gray-100 rounded-md mb-3 mr-3">
+            <button className="inline-flex w-40 px-5 py-3 mb-3 mr-3 font-bold text-gray-600 border rounded-md md:w-auto hover:text-gray-900 hover:bg-gray-100">
               <img src="/svg/url.svg" alt="" className="w-4 h-4 mr-3" />
               <p>Edit Link</p>
             </button>
           </Link>
           <Link href="/edit/profile">
-            <button className="inline-flex w-40 md:w-auto px-5 py-3 text-gray-600 font-bold border hover:text-gray-900 hover:bg-gray-100 rounded mb-3">
+            <button className="inline-flex w-40 px-5 py-3 mb-3 font-bold text-gray-600 border rounded md:w-auto hover:text-gray-900 hover:bg-gray-100">
               <img src="/svg/profile.svg" alt="" className="w-4 h-4 mr-3" />
               <p>Edit Profile</p>
             </button>
@@ -64,8 +64,8 @@ const UserHeader = () => {
 
         <Link href={`http://localhost:3000/${handle}`}>
           <div className="flex flex-row items-center">
-            <div className="inline-flex mr-s text-right items-center hover:bg-gray-100 px-5 py-1 rounded-lg border mr-5">
-              <div className="text-xs md:text-md flex flex-col flex-wrap mr-2">
+            <div className="inline-flex items-center px-5 py-1 mr-5 text-right border rounded-lg mr-s hover:bg-gray-100">
+              <div className="flex flex-col flex-wrap mr-2 text-xs md:text-md">
                 <span className="font-bold">{handle}</span>
                 <span>{role} Pack</span>
               </div>
@@ -74,7 +74,7 @@ const UserHeader = () => {
               </div>
             </div>
             <img
-              className="w-5 h-5 mr-5  cursor-pointer"
+              className="w-5 h-5 mr-5 cursor-pointer"
               src="/svg/notify.svg"
               alt=""
             />
@@ -87,16 +87,16 @@ const UserHeader = () => {
           </div>
         </Link>
       </header> */}
-      <header className="mt-3 flex flex-row justify-between items-center max-w-5xl mx-auto">
+      <header className="flex flex-row items-center justify-between max-w-5xl mx-auto mt-3">
   <div className="flex flex-col md:flex-row">
     <Link href="/edit/links">
-      <button className="inline-flex w-40 md:w-auto px-5 py-3 text-gray-600 font-bold border hover:text-gray-900 hover:bg-gray-100 rounded-md mb-3 mr-3">
+      <button className="inline-flex w-40 px-5 py-3 mb-3 mr-3 font-bold text-gray-600 border rounded-md md:w-auto hover:text-gray-900 hover:bg-gray-100">
         <img src="/svg/url.svg" alt="" className="w-4 h-4 mr-2" />
         <span className="text-sm">Edit Link</span>
       </button>
     </Link>
     <Link href="/edit/profile">
-      <button className="inline-flex w-40 md:w-auto px-5 py-3 text-gray-600 font-bold border hover:text-gray-900 hover:bg-gray-100 rounded mb-3">
+      <button className="inline-flex w-40 px-5 py-3 mb-3 font-bold text-gray-600 border rounded md:w-auto hover:text-gray-900 hover:bg-gray-100">
         <img src="/svg/profile.svg" alt="" className="w-4 h-4 mr-2" />
         <span className="text-sm">Edit Profile</span>
       </button>
@@ -105,10 +105,10 @@ const UserHeader = () => {
 
   
     <div className="flex flex-row items-center mb-4">
-    <Link href={`http://localhost:3000/${handle}`}> 
-      <div className="inline-flex items-center px-4 py-2 rounded-lg border border-gray-300 mr-4 hover:bg-gray-100">
+    <Link href={`http://linkupworld.netlify.app/${handle}`}> 
+      <div className="inline-flex items-center px-4 py-2 mr-4 border border-gray-300 rounded-lg hover:bg-gray-100">
         <div className="flex flex-col ml-2">
-          <span className="text-xs text-gray-600 font-medium">{handle}</span>
+          <span className="text-xs font-medium text-gray-600">{handle}</span>
           <span className="text-xs text-gray-400">{role} Pack</span>
         </div>
         <div className="user-img">
@@ -118,7 +118,7 @@ const UserHeader = () => {
       </Link>
      
       <img
-        className="w-5 h-5 cursor-pointer hover:opacity-75 ml-2"
+        className="w-5 h-5 ml-2 cursor-pointer hover:opacity-75"
         src="/svg/logout.svg"
         alt="Logout"
         onClick={handleLogout}

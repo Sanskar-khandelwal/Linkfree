@@ -35,7 +35,7 @@ const profile = () => {
     e.preventDefault()
     axios
       .post(
-        "http://localhost:8080/save/profile",
+        "https://socialverseserver-z24w.onrender.com/save/profile",
         {
           tokenMail: localStorage.getItem("LinkTreeToken"),
           name, 
@@ -63,7 +63,7 @@ const profile = () => {
     e.preventDefault()
     axios
       .post(
-        "http://localhost:8080/save/socials",
+        "https://socialverseserver-z24w.onrender.com/save/socials",
         {
           tokenMail: localStorage.getItem("LinkTreeToken"),
           socials,
@@ -95,7 +95,7 @@ const profile = () => {
 
   useEffect(() => {
      if(!localStorage.getItem('LinkTreeToken')) return router.push('/login')
-     axios.post("http://localhost:8080/load/socials", {
+     axios.post("https://socialverseserver-z24w.onrender.com/load/socials", {
       tokenMail: localStorage.getItem('LinkTreeToken')
      },
      {
@@ -116,28 +116,28 @@ const profile = () => {
         <main>
           <section>
             <div>
-              <h4 className="font-bold text-center mb-5 text-lg">
+              <h4 className="mb-5 text-lg font-bold text-center">
                 Edit Profile
               </h4>
               <div>
-                <form onSubmit={saveProfile} className="flex flex-col justify-center items-center">
-                  <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 bg-white items-center">
+                <form onSubmit={saveProfile} className="flex flex-col items-center justify-center">
+                  <span className="flex flex-row items-center w-11/12 m-auto mb-3 bg-white border-2 shadow-md">
                     <Image
                       src="/svg/user.svg"
                       width={20}
                       height={20}
                       alt="user logo"
-                      className="mx-2 text-white bg-white  text-center"
+                      className="mx-2 text-center text-white bg-white"
                     />
                     <input
-                      className="border-2 px-3 py-2  focus:outline-none w-full"
+                      className="w-full px-3 py-2 border-2 focus:outline-none"
                       type="text"
                       placeholder="Set a Name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                     />
                   </span>
-                  <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 bg-white items-center">
+                  <span className="flex flex-row items-center w-11/12 m-auto mb-3 bg-white border-2 shadow-md">
                     <Image
                       src="/svg/bio.svg"
                       width={20}
@@ -146,7 +146,7 @@ const profile = () => {
                       className="mx-2 text-white bg-white"
                     ></Image>
                     <input
-                      className="  border-2 px-3 py-2  focus:outline-none w-full"
+                      className="w-full px-3 py-2 border-2 focus:outline-none"
                       type="text"
                       placeholder="Enter a bio"
                       value={bio}
@@ -154,7 +154,7 @@ const profile = () => {
                     />
                   </span>
 
-                  <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 bg-white items-center">
+                  <span className="flex flex-row items-center w-11/12 m-auto mb-3 bg-white border-2 shadow-md">
                     <Image
                       src="/svg/avatar.svg"
                       width={20}
@@ -163,7 +163,7 @@ const profile = () => {
                       className="mx-2 text-white bg-white"
                     ></Image>
                     <input
-                      className="  border-2 px-3 py-2  focus:outline-none w-full"
+                      className="w-full px-3 py-2 border-2 focus:outline-none"
                       type="text"
                       placeholder="Enter Image Link"
                       value={avatar}
@@ -171,7 +171,7 @@ const profile = () => {
                     />
                     <img
                       src={avatar}
-                      className="w-12 rounded-full border shadow"
+                      className="w-12 border rounded-full shadow"
                       alt=""
                     />
                   </span>
@@ -179,39 +179,39 @@ const profile = () => {
                   <input
                     type="submit"
                     value="Save Profile"
-                    className="bg-blue-600 px-4 py-2 rouned-md w-32 border shadow-md cursor-pointer text-white"
+                    className="w-32 px-4 py-2 text-white bg-blue-600 border shadow-md cursor-pointer rouned-md"
                   />
                 </form>
               </div>
             </div>
 
             <div>
-              <h4 className="font-bold text-center mb-5 mt-5 text-lg">
+              <h4 className="mt-5 mb-5 text-lg font-bold text-center">
                 Edit Socials
               </h4>
               <div>
                 <form
-                  className="flex flex-col justify-center items-center"
+                  className="flex flex-col items-center justify-center"
                   onSubmit={saveSocials}
                 >
-                  <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 bg-white items-center">
+                  <span className="flex flex-row items-center w-11/12 m-auto mb-3 bg-white border-2 shadow-md">
                     <Image
                       src="/svg/facebook.svg"
                       width={20}
                       height={20}
                       alt="facebook logo"
-                      className="mx-2 text-white bg-white  text-center"
+                      className="mx-2 text-center text-white bg-white"
                     />
                     <input
                       id="facebook"
-                      className="border-2 px-3 py-2  focus:outline-none w-full"
+                      className="w-full px-3 py-2 border-2 focus:outline-none"
                       type="text"
                       placeholder="Enter facebook profile"
                       value={socials.facebook}
                       onChange={handleSocials}
                     />
                   </span>
-                  <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 bg-white items-center">
+                  <span className="flex flex-row items-center w-11/12 m-auto mb-3 bg-white border-2 shadow-md">
                     <Image
                       src="/svg/twitter.svg"
                       width={20}
@@ -221,14 +221,14 @@ const profile = () => {
                     ></Image>
                     <input
                       id="twitter"
-                      className="  border-2 px-3 py-2  focus:outline-none w-full"
+                      className="w-full px-3 py-2 border-2 focus:outline-none"
                       type="text"
                       placeholder="Enter twitter profile"
                       value={socials.twitter}
                       onChange={handleSocials}
                     />
                   </span>
-                  <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 bg-white items-center">
+                  <span className="flex flex-row items-center w-11/12 m-auto mb-3 bg-white border-2 shadow-md">
                     <Image
                       src="/svg/linkedin.svg"
                       width={20}
@@ -238,14 +238,14 @@ const profile = () => {
                     ></Image>
                     <input
                       id="linkedin"
-                      className="  border-2 px-3 py-2  focus:outline-none w-full"
+                      className="w-full px-3 py-2 border-2 focus:outline-none"
                       type="text"
                       placeholder="Enter Linkedin profile link"
                       value={socials.linkedin}
                       onChange={handleSocials}
                     />
                   </span>
-                  <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 bg-white items-center">
+                  <span className="flex flex-row items-center w-11/12 m-auto mb-3 bg-white border-2 shadow-md">
                     <Image
                       src="/svg/instagram.svg"
                       width={20}
@@ -255,14 +255,14 @@ const profile = () => {
                     ></Image>
                     <input
                       id="instagram"
-                      className="  border-2 px-3 py-2  focus:outline-none w-full"
+                      className="w-full px-3 py-2 border-2 focus:outline-none"
                       type="text"
                       placeholder="Enter instagram profile Link"
                       value={socials.instagram}
                       onChange={handleSocials}
                     />
                   </span>
-                  <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 bg-white items-center">
+                  <span className="flex flex-row items-center w-11/12 m-auto mb-3 bg-white border-2 shadow-md">
                     <Image
                       src="/svg/github.svg"
                       width={20}
@@ -272,14 +272,14 @@ const profile = () => {
                     ></Image>
                     <input
                       id="github"
-                      className="  border-2 px-3 py-2  focus:outline-none w-full"
+                      className="w-full px-3 py-2 border-2 focus:outline-none"
                       type="text"
                       placeholder="Enter github profile Link"
                       value={socials.github}
                       onChange={handleSocials}
                     />
                   </span>
-                  <span className="flex flex-row mb-3 w-11/12 m-auto shadow-md border-2 bg-white items-center">
+                  <span className="flex flex-row items-center w-11/12 m-auto mb-3 bg-white border-2 shadow-md">
                     <Image
                       src="/svg/youtube.svg"
                       width={20}
@@ -289,7 +289,7 @@ const profile = () => {
                     ></Image>
                     <input
                       id="youtube"
-                      className="  border-2 px-3 py-2  focus:outline-none w-full"
+                      className="w-full px-3 py-2 border-2 focus:outline-none"
                       type="text"
                       placeholder="Enter Youtube channel Link"
                       value={socials.youtube}
@@ -299,7 +299,7 @@ const profile = () => {
                   <input
                     type="submit"
                     value="Save Profile"
-                    className="bg-blue-600 px-4 py-2 rouned-md w-32 border shadow-md cursor-pointer text-white"
+                    className="w-32 px-4 py-2 text-white bg-blue-600 border shadow-md cursor-pointer rouned-md"
                   />
                 </form>
               </div>

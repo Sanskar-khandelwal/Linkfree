@@ -6,7 +6,7 @@ const ShareButton = () => {
   const router = useRouter()
   const copyLink = () => {
     navigator.clipboard.writeText(
-      `http://localhost:3000/${router.query.handle}`
+      `http://linkupworld.netlify.app/${router.query.handle}`
     )
     toast("Successfully Copied on Clipboard")
   }

@@ -27,7 +27,7 @@ const Apply = () => {
 
     axios
       .post(
-        "http://localhost:8080/api/register",
+        "https://socialverseserver-z24w.onrender.com/api/register",
         {
           handle,
           email,
@@ -61,26 +61,26 @@ const Apply = () => {
   return (
     <>
     <section className="flex flex-row h-screen overflow-hidden ">
-    <div className="main flex  h-full px-10 w-2/5 items-center">  
-          <div className="content px-4 py-8  bg-white">
+    <div className="flex items-center w-2/5 h-full px-10 main">  
+          <div className="px-4 py-8 bg-white content">
             <h1 className="text-2xl font-bold text-left">
               Create your Personlised Hub, Sign Up today
             </h1>
-            <p className="text-left  mt-2">Link Share Inspire</p>
+            <p className="mt-2 text-left">Link Share Inspire</p>
             <form
               onSubmit={handleRegister}
-              className="flex flex-col gap-3 text-lg mt-6"
+              className="flex flex-col gap-3 mt-6 text-lg"
             >
-              <span className="flex flex-row border bg-white items-center">
+              <span className="flex flex-row items-center bg-white border">
                 <Image
                   src="/svg/userhandle.svg"
                   width={35}
                   height={30}
                   alt="instagram logo"
-                  className="mx-2 text-white bg-white w-6 h-6 "
+                  className="w-6 h-6 mx-2 text-white bg-white "
                 ></Image>
                 <input
-                  className="  border rounded-md bg-gray-100 px-3 py-2  focus:outline-none w-full"
+                  className="w-full px-3 py-2 bg-gray-100 border rounded-md  focus:outline-none"
                   type="text"
                   value={handle}
                   onChange={(e) => setHandle(e.target.value)}
@@ -88,14 +88,14 @@ const Apply = () => {
                 />
               </span>
               <input
-                className="  border px-2 py-2 rounded-md bg-gray-100 focus:outline-none"
+                className="px-2 py-2 bg-gray-100 border rounded-md  focus:outline-none"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter Your Mail"
               />
               <input
-                className="  border px-2 py-2 rounded-md bg-gray-100  focus:outline-none"
+                className="px-2 py-2 bg-gray-100 border rounded-md  focus:outline-none"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -112,7 +112,7 @@ const Apply = () => {
                   checked={category === "Creator"}
                   onChange={handleCategoryChange}
                   value="Creator"
-                  className="inline rounded-md bg-gray-100 "
+                  className="inline bg-gray-100 rounded-md "
                 />
                 <p className="inline ml-2">Creators</p>
               </label>
@@ -122,7 +122,7 @@ const Apply = () => {
                   checked={category === "Agency"}
                   onChange={handleCategoryChange}
                   value="Agency"
-                  className="inline rounded-md bg-gray-100"
+                  className="inline bg-gray-100 rounded-md"
                 />
                 <p className="inline ml-2">Agency</p>
               </label>
@@ -131,15 +131,15 @@ const Apply = () => {
               <input
                 type="submit"
                 value="Apply"
-                className="bg-indigo-600 text-white py-2  cursor-pointer rounded-md"
+                className="py-2 text-white bg-indigo-600 rounded-md cursor-pointer"
               />
             </form>
-            <h4 className="text- text-black mt-4">
+            <h4 className="mt-4 text-black text-">
             Already have an account ?
             <Link className="font-bold text-indigo-500" href="/login">
               Login
             </Link>
-            {error && <p className="text-red-700 font-mono"> try different username or email </p>}
+            {error && <p className="font-mono text-red-700"> try different username or email </p>}
           </h4>
           </div>
         
@@ -147,7 +147,7 @@ const Apply = () => {
         </div>
 
         <div className="flex-1 w-3/5 h-full ">
-         <img src="/images/bulb.jpg " alt="" className="rounded-lg object-cover h-full w-full" />
+         <img src="/images/bulb.jpg " alt="" className="object-cover w-full h-full rounded-lg" />
         </div>
 
     </section>

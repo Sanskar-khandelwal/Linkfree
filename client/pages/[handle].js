@@ -24,7 +24,7 @@ const handle = () => {
   useEffect(() => {
     if (router.query?.handle) {
       axios
-        .get(`http://localhost:8080/get/${router.query.handle}`)
+        .get(`https://socialverseserver-z24w.onrender.com/get/${router.query.handle}`)
         .then((res) => {
           const data = res.data
           {

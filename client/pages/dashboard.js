@@ -16,7 +16,7 @@ const dashboard = () => {
 
     axios
       .post(
-        "http://localhost:8080/data/dashboard",
+        "https://socialverseserver-z24w.onrender.com/data/dashboard",
         {
           tokenMail: localStorage.getItem("LinkTreeToken"),
         },
@@ -46,7 +46,7 @@ const dashboard = () => {
       <div>
         <UserHeader/>
         <main>
-          <section className="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             <LinkBox lbTitle="Links" lbNumber={data.links} lbSvg="url" lbTheme="white" />
             <LinkBox
               lbTitle="Growth"

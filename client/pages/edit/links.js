@@ -21,7 +21,7 @@ const links = () => {
 
     axios
       .post(
-        "http://localhost:8080/save/links",
+        "https://socialverseserver-z24w.onrender.com/save/links",
         {
           tokenMail: localStorage.getItem("LinkTreeToken"),
           links: linksData,
@@ -63,7 +63,7 @@ const links = () => {
     if (!localStorage.getItem("LinkTreeToken")) return router.push("/login")
     axios
       .post(
-        "http://localhost:8080/load/links",
+        "https://socialverseserver-z24w.onrender.com/load/links",
         {
           tokenMail: localStorage.getItem("LinkTreeToken"),
         },
@@ -88,17 +88,17 @@ const links = () => {
         <UserHeader />
         <main className="mt-4">
           <section>
-            <h1 className="text-center font-bold text-xl text-gray-800">
+            <h1 className="text-xl font-bold text-center text-gray-800">
                              Customize links
             </h1>
             <div>
               <form onSubmit={saveLinks}>
                 {links.map((link, index) => (
-                  <div key={index} className="flex justify-between items-center max-w-5xl mx-auto mt-4 ">
+                  <div key={index} className="flex items-center justify-between max-w-5xl mx-auto mt-4 ">
                     <label>
             
                       <input
-                        className="outline-none align-baseline  border-2 font text-xl text-gray-600 shadow rounded-md px-2 p-1"
+                        className="p-1 px-2 text-xl text-gray-600 align-baseline border-2 rounded-md shadow outline-none font"
                         type="text"
                         placeholder="Enter URL"
                         value={link.url}
@@ -110,7 +110,7 @@ const links = () => {
                     <label>
                 
                       <input
-                        className="outline-none  border-2 font text-xl text-gray-600 shadow rounded-md px-2 p-1"
+                        className="p-1 px-2 text-xl text-gray-600 border-2 rounded-md shadow outline-none font"
                         type="text"
                         placeholder="Enter Name"
                         value={link.title}
@@ -121,14 +121,14 @@ const links = () => {
                     </label>
                    <img
                       src="/svg/addition.svg"
-                      className="w-7 h-7  cursor-pointer"
+                      className="cursor-pointer w-7 h-7"
                       type="button"
                       onClick={(e) => handleAddLink(index)}
                       alt="icon to delete link"
                     />
                     <img
                       src="/svg/delete.svg"
-                      className="w-9 h-9  cursor-pointer"
+                      className="cursor-pointer w-9 h-9"
                       type="button"
                       onClick={(e) => handleRemoveLinks(index)}
                       alt="icon to delete link"
