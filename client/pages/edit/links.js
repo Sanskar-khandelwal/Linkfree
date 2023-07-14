@@ -4,20 +4,21 @@ import axios from "axios"
 import { toast } from "react-toastify"
 
 const links = () => {
-  // const [links, setLinks] = useState([{ url: "", title: "" }])
-
   const [links, setLinks] = useState([{ url: "", title: "" }])
 
   const [title, setTitle] = useState("")
 
   function saveLinks(e) {
     e.preventDefault()
+    toast.success("Links Saved!!")
     const linksArray = Object.values(links)
     const titlesArray = Object.values(title)
     const linksData = linksArray.map((link, index) => ({
       link,
       title: titlesArray[index],
     }))
+
+
 
     axios
       .post(
@@ -58,8 +59,7 @@ const links = () => {
   }
 
   useEffect(() => {
-    console.log(typeof [1, 2])
-    console.log(Array.isArray(links))
+    
     if (!localStorage.getItem("LinkTreeToken")) return router.push("/login")
     axios
       .post(
@@ -140,6 +140,7 @@ const links = () => {
                   <button
                     className="bg-[#19c37d] text-white px-4 py-2 rounded-md block  mx-auto mt-4"
                     type="submit"
+                    
                   >
                     {" "}
                     Save links
